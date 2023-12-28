@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 110px;
+            background-color: #f0f0f0;
+        }
+        #joke-container {
+            margin-top: 20px;
+            padding-top: 30%;
+            padding: 20px;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            background-color: #ecf0f1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        #generate-button {
+            padding: 15px 20px;
+            margin: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #generate-button:hover {
+            background-color: #2980b9;
+        }
+        #joke-counter {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dad Jokes Generator</h1>
+
+    <button id="generate-button" onclick="generateJoke()">Generate Joke</button>
+
+    <div id="joke-container">
+        <p id="joke-text">Click the button to generate a joke!</p>
+    </div>
+
+    <div id="joke-counter">Jokes generated: <span id="counter">0</span></div>
+
+    <script>
+        const jokes = [
+    "I got fired from bank today! A women asked me to check her balance, So i pushed her.",
+    "I haven't talked to my wife in 7 years. I don't want to interrupt her.",
+    "To the guy who invented zero, thanks for nothin.",
+    "My wife asked if I've seen the dog bowl. I said I never knew he did.",
+    "I asked my wife when her birthday was. She said March 1st. So i walked around the room and asked again.",
+    "My wife told me to put ketchup on the shopping list. Now i can't read anything.",
+    "I told my wife she needs to embrace her mistakes. So she gave me a hug.",
+    "A guy told me there was a shark attack today. The shark took out his whole left side. Couldn't believe it when he told me he was all right.",
+    "Why is 'Dark' spelled with a K. Cuz you can't 'C' in the dark.",
+    "I used to work at a Pepsi Cola Plant. But i left because it was soda pressing.",
+    "My wife complains I don't buy her flowers. Tbh I never knew she sold flowers.",
+    "NOTHING starts with N and ends with a G.",
+    "My wife said to me: 'I hate myself cuz i look fat. Can you give me a compliment?' I said: 'You have perfect eyesight honey'.",
+    "I no longer see my wife and kids... And it's all because of the gambling... I won the lottery and moved to Hawaii!.",
+    "I asked this old man i know: 'After 95 years you still call your wife darling, honey, love? Whats the secret?' He said, 'I forgot her name 10 years ago and im afraid to ask her.",
+    "My kids refused to eat left over tacos for dinner. So my wife said to throw them out. I did. Now i have no idea what to do with the tacos.",
+    "My grandfather said, back in the day he could go in the grocery store with 2 dollars in your pocket, come out with a loaf of bread, a dozen eggs and even butter. He said: 'Now they have cameras everywhere'.",
+    "This morning i was at a job interview, and the manager handed me a laptop and said: 'I want you to try and sell this to me'. So i put it under my arm left, went home. Eventually he called me and said... 'I want my laptop back', I said '$200 and its yours'.",
+    "My gf said: 'You act like a detective too much, I wanna split up'. I said 'Thats a great idea, we can cover more ground that way.",
+    "If lightning hits an orchestra... Who's more likely to get hit? The conductor!",
+    "Yesterday i was washing the car with my son. He said 'Dad can't you just use a sponge?'",
+    "I was gonna tell you a time travelling joke. But you guys didn't like it.",
+    "My gf complains a lot that i don't smile anymore. She's the one that wanted a serious relationship.",
+    "I love going outdoors. It's much safer than going outwindows.",
+    "What do you call the sexuality, where you're attracted to men and women, but they're not attracted to you. Bi-yourself.",
+    "What do you call a factory that just makes okay products? A satisfactory.",
+    "What did Newton think when he discovered gravity? Sh!t is about to go down.",
+    "Why did the physics teacher break up with the biology teacher? There was no chemistry.",
+    "You wanna know the difference between me and a calender? Calender has dates...",
+    "I had an appointment next week with my psychic. But, she called me up to tell me I wouldn't be able to make it.",
+    "I asked my friend Sam to sing a song about the iPhone. And the Samsung.",
+    "Is Google a man or a women? A women, Cuz it never lets you finish your sentence without making a suggestion.",
+    "What do you call a nun who sleep walks? A roamin catholic.",
+    
+];
+
+
+        let jokeCounter = 0;
+
+        function generateJoke() {
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            const randomJoke = jokes[randomIndex];
+
+            const jokeContainer = document.getElementById("joke-container");
+            jokeContainer.style.opacity = 0;
+            jokeContainer.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                document.getElementById("joke-text").textContent = randomJoke;
+                jokeContainer.style.opacity = 1;
+                jokeContainer.style.transform = "translateY(0)";
+            }, 500);
+
+            jokeCounter++;
+            document.getElementById("counter").textContent = jokeCounter;
+
+            const randomColor = getRandomColor();
+            document.getElementById("generate-button").style.backgroundColor = randomColor;
+        }
+
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+</body>
+</html>
